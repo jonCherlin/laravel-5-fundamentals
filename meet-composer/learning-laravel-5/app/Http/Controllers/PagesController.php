@@ -9,9 +9,11 @@ class PagesController extends Controller {
 
 	public function about() {
 
-		$name = "Jonathan Cherlin";
+		$people = [
+			'Taylor Otwell', 'Dayle Rees', 'Eric Barnes'
+		];
 
-		return view('pages.about')->with('name', $name);
+		return view('pages.about', compact('people'));
 
 	}
 
