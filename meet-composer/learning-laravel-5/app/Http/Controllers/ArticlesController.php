@@ -5,6 +5,7 @@ use App\Http\Requests;
 use App\Http\Requests\ArticleRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Auth;
 use Carbon\Carbon;
 
 class ArticlesController extends Controller {
@@ -35,9 +36,19 @@ class ArticlesController extends Controller {
 
 	}
 
+
+	/**
+	 * Save a new article.
+	 *
+	 * @param ArticleRequest $request
+	 * @return Response
+	 */
+
 	public function store(ArticleRequest $request) {
 
-		Article::create($request->all());
+		$article = new Article($request->all());
+
+		Auth::user()->articles()->save($article);
 
 		return redirect('articles');
 
