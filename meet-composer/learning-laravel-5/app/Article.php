@@ -12,7 +12,9 @@ class Article extends Model {
 
 		'body',
 
-		'published_at'
+		'published_at',
+
+		'user_id' // temporary!!
 
 	];
 
@@ -27,6 +29,18 @@ class Article extends Model {
 	public function setPublishedAtAttribute($date) {
 
 		$this->attributes['published_at'] = Carbon::parse($date);
+
+ 	}
+
+ 	/**
+	 * An article is owned by a user.
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+	 */
+
+ 	public function user() {
+
+ 		return $this->belongsTo('App\User');
 
  	}
 
