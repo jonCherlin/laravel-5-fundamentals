@@ -24,12 +24,15 @@ class ArticlesController extends Controller {
 
 	}
 
+	/**
+	* Show a single article.
+	*
+	* @param Article $article
+	* @return Response
+	*/
 
-	public function show($id) {
 
-		$article = Article::findOrFail($id);
-
-		dd($article->published_at);
+	public function show(Article $article) {
 
 		return view('articles.show', compact('article'));
 
@@ -60,7 +63,14 @@ class ArticlesController extends Controller {
 
 	}
 
-	public function edit($id) {
+	/**
+	* Edit a single article.
+	*
+	* @param Article $article
+	* @return Response
+	*/
+
+	public function edit(Article $article) {
 
 		$article = Article::findOrFail($id);
 
@@ -68,8 +78,16 @@ class ArticlesController extends Controller {
 
 	}
 
+	/**
+	* Update a single article.
+	*
+	* @param Article $article
+	* @param ArticleRequest $request
+	* @return Response
+	*/
 
-	public function update($id, ArticleRequest $request) {
+
+	public function update(Article $article, ArticleRequest $request) {
 
 		$article = Article::findOrFail($id);
 
