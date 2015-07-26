@@ -6,9 +6,11 @@
 
 	<meta charset="UTF-8">
 
-	<title>Document</title>
+	<title>My First App</title>
 
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+	<link rel="stylesheet" href="{{ elixir('css/all.css') }}">
 
 </head>
 

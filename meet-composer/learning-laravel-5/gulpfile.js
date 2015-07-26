@@ -12,5 +12,14 @@ var elixir = require('laravel-elixir');
  */
 
 elixir(function(mix) {
-    mix.less('app.less');
+
+	/*COFFEE DOES NOT WORK WHEN RUNNING GULP...SPENT AN HOUR TRYING TO FIND A SOLUTION...GET ERROR Error running task sequence: [TypeError: Arguments to path.join must be strings]
+ ... CAN'T FIND SOLUTION ONLINE...UPDATED NPM...GOT LATEST VERSION OF COFFEE...UPDATED VERSION OF GULP...MOVING ON*/
+    //mix.sass('app.scss').coffee();
+    mix.sass('app.scss');
+
+    mix.styles(['vendor/normalize.css','app.css'], null, 'public/css');
+
+    mix.version('public/css/all.css');
+
 });
