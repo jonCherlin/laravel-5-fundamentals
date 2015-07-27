@@ -11,9 +11,11 @@ use Carbon\Carbon;
 
 class ArticlesController extends Controller {
 
+	/*Create a new articles controller instance.*/
+
 	public function __construct() {
 
-		$this->middleware('auth', ['except' => 'index']);
+		$this->middleware('auth', ['except' => 'index', 'show']);
 
 	}
 
@@ -57,9 +59,7 @@ class ArticlesController extends Controller {
 
 	public function store(ArticleRequest $request) {
 
-		$article = Auth::user()->articles()->create($request->all());
-
-		$article->tags()->attach($request->input('tag_list'));
+		$this->createArticle($request);
 
 		//flash()->success('Your article has been created');
 
@@ -95,14 +95,44 @@ class ArticlesController extends Controller {
 	*/
 
 
-	public function update(Article $article, ArticleRequest $request) {
+	public function update(ArticleRequest $request, Article $article) {
 
-		$article = Article::findOrFail($id);
+		//$article = Article::findOrFail($id);
 
 		$article->update($request->all());
 
+		$this->syncTags($article, $request->input('tag_list'));
+
 		return redirect('articles');
 
+	}
+
+	/**
+	* Sync up the list of tags in the database.
+	*
+	* @param Article $article
+	* @param array $tags
+	*/
+
+	private function syncTags(Article $article, array $tags) {
+
+		$article->tags()->sync($tags);
+
+	}
+
+	/**
+	* Save a new article.
+	*
+	* @param ArticleRequest $request
+	* @return mixed
+	*/
+
+	private function createArticle(ArticleRequest $request) {
+		$article = Auth::user()->articles()->create($request->all());
+
+		$this->syncTags($article, $request->input('tag_list'));
+
+		return $article;
 	}
 
 }
