@@ -8,9 +8,7 @@
 
 	<title>My First App</title>
 
-	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-
-	<link rel="stylesheet" href="{{ elixir('css/all.css') }}">
+	<link rel="stylesheet" href="/css/all.css" >
 
 </head>
 
@@ -20,8 +18,7 @@
 
 	@yield('content')
 
-	<script src="//code.jquery.com/jquery.js"></script>
-	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	<script src="/js/all.js"></script>
 
 	<script>
 
@@ -30,6 +27,8 @@
 		//$('div.alert').not('alert-important').delay(3000).slideUp(300);
 
 	</script>
+
+	@yield('footer')
 
 </body>
 
