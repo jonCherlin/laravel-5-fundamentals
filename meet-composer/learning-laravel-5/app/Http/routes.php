@@ -3,11 +3,14 @@
 interface BarInterface {}
 
 class Bar implements BarInterface {}
+class SecondBar implements BarInterface {}
 
-App::bind('BarInterface', 'Bar');
+app()->bind('BarInterface', 'Bar');
 
 /*USES 'RELECTION' TO BIND THINGS FOR YOU*/
 Route::get('bar', function(BarInterface $bar) {
+
+	$bar = app('BarInterface');
 
 	dd($bar);
 
