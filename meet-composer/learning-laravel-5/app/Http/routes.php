@@ -1,37 +1,6 @@
 <?php
 
-interface BarInterface {}
-
-class Bar implements BarInterface {}
-class SecondBar implements BarInterface {}
-
-app()->bind('BarInterface', 'Bar');
-
-/*USES 'RELECTION' TO BIND THINGS FOR YOU*/
-Route::get('bar', function(BarInterface $bar) {
-
-	$bar = app('BarInterface');
-
-	dd($bar);
-
-});
-
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the controller to call when that URI is requested.
-|
-*/
-
-Route::get('/', function() {
-
-	return 'Home Page';
-
-});
+Route::get('foo', 'FooController@foo');
 
 Route::get('about', 'PagesController@about');
 
@@ -47,10 +16,3 @@ Route::controllers([
 	'password' => 'Auth\PasswordController',
 
 ]);
-
-Route::get('foo', ['middleware' => 'manager', function() {
-
-
-	return 'this page may only be viewed by managers';
-
-}]);
