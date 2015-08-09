@@ -32,6 +32,12 @@ class Article extends Model {
 
  	}
 
+ 	public function getPublishedAtAttribute($date) {
+
+ 		return new Carbon($date);
+
+ 	}
+
  	/**
 	 * An article is owned by a user.
 	 *
