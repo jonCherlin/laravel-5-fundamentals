@@ -1,28 +1,13 @@
 <?php
 
-class Baz {}
+interface BarInterface {}
 
-class Bar {
+class Bar implements BarInterface {}
 
-	public $baz;
-
-	public function __construct(Baz $baz) {
-
-		$this->baz = $baz;
-
-	}
-
-}
-
-// App::bind('Bar', function() {
-
-// 	return new Bar(new Baz);
-
-// });
-
+App::bind('BarInterface', 'Bar');
 
 /*USES 'RELECTION' TO BIND THINGS FOR YOU*/
-Route::get('bar', function(Bar $bar) {
+Route::get('bar', function(BarInterface $bar) {
 
 	dd($bar);
 
