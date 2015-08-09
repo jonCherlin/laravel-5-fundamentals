@@ -7,19 +7,17 @@ use Illuminate\Http\Request;
 
 class FooController extends Controller {
 
-	private $repository;
+	// private $repository;
 
-	public function __construct(FooRepository $repository) {
+	// public function __construct(FooRepository $repository) {
 
-		$this->repository = $repository;
+	// 	$this->repository = $repository;
 
-	}
+	// }
 
-	public function foo() {
+	public function foo(FooRepository $repository) {
 
-		//$repository = new \App\Repositories\FooRepository();
-
-		return $this->repository->get();
+		return $repository->get();
 
 	}
 
