@@ -1,5 +1,33 @@
 <?php
 
+class Baz {}
+
+class Bar {
+
+	public $baz;
+
+	public function __construct(Baz $baz) {
+
+		$this->baz = $baz;
+
+	}
+
+}
+
+// App::bind('Bar', function() {
+
+// 	return new Bar(new Baz);
+
+// });
+
+
+/*USES 'RELECTION' TO BIND THINGS FOR YOU*/
+Route::get('bar', function(Bar $bar) {
+
+	dd($bar);
+
+});
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -10,6 +38,12 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+
+Route::get('/', function() {
+
+	return 'Home Page';
+
+});
 
 Route::get('about', 'PagesController@about');
 
